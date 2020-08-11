@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1073609902334-ep4u257map5d023pssmci42p6m434crr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1073609902334-ep4u257map5d023pssmci42p6m434crr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyApN1MjmfTJ9oJJaz6207xNwkfuiHnS0rI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1073609902334</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pyaesone.softBloc</string>
+	<key>PROJECT_ID</key>
+	<string>soft-project-723db</string>
+	<key>STORAGE_BUCKET</key>
+	<string>soft-project-723db.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1073609902334:ios:afe37d2c47ea5e247afdaf</string>
+	<key>DATABASE_URL</key>
+	<string>https://soft-project-723db.firebaseio.com</string>
+</dict>
+</plist>
