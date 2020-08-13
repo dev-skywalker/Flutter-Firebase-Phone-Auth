@@ -14,19 +14,19 @@ class EditTextUtils {
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        prefixIcon: Icon(icon),
-        prefixStyle: TextStyle(color: Colors.orange),
+        prefixIcon: Icon(icon,color: Colors.deepPurpleAccent,),
+        prefixStyle: TextStyle(color: Colors.deepPurpleAccent),
         fillColor: Colors.white.withOpacity(0.6),
         filled: true,
         isDense: true,
-        labelStyle: TextStyle(color: Colors.orange),
-        focusColor: Colors.orange,
+        labelStyle: TextStyle(color: Colors.deepPurpleAccent),
+        focusColor: Colors.deepPurpleAccent,
         border: new OutlineInputBorder(
           borderRadius: const BorderRadius.all(
             const Radius.circular(8.0),
           ),
           borderSide: new BorderSide(
-            color: Colors.orange,
+            color: Colors.deepPurpleAccent,
             width: 1.0,
           ),
         ),
@@ -35,7 +35,7 @@ class EditTextUtils {
             const Radius.circular(8.0),
           ),
           borderSide: new BorderSide(
-            color: Colors.orange,
+            color: Colors.deepPurpleAccent,
             width: 1.0,
           ),
         ),
@@ -44,7 +44,7 @@ class EditTextUtils {
             const Radius.circular(8.0),
           ),
           borderSide: new BorderSide(
-            color: Colors.orange,
+            color: Colors.deepPurpleAccent,
             width: 1.0,
           ),
         ),

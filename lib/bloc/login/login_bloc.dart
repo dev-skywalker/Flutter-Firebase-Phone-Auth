@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,7 +42,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         AuthResult result = await _userRepository.verifyAndLogin(verID, event.otp);
         if (result.user != null) {
-          await _userRepository.createUser(result.user.uid, "Mg Ag");
+          DocumentSnapshot getUserData = await _userRepository.getUserById();
+          if(getUserData == null){
+            //create new user
+            await _userRepository.createUser(result.user.uid, "Mg Ag");
+          }else{
+            print("Have User");
+          }
+
           yield LoginCompleteState(result.user);
         } else {
           yield OtpExceptionState(message: "Invalid otp!");

@@ -6,7 +6,6 @@ import 'package:soft_bloc/widgets/login_form.dart';
 
 class LoginPage extends StatelessWidget {
   final UserRepository userRepository;
-
   LoginPage({Key key, @required this.userRepository})
       : assert(userRepository != null),
         super(key: key);

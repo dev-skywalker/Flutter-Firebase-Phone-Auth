@@ -27,8 +27,7 @@ class UserRepository {
         codeAutoRetrievalTimeout: autoRetrievalTimeout);
   }
 
-  Future<AuthResult> verifyAndLogin(
-      String verificationId, String smsCode) async {
+  Future<AuthResult> verifyAndLogin(String verificationId, String smsCode) async {
     AuthCredential authCredential = PhoneAuthProvider.getCredential(
         verificationId: verificationId, smsCode: smsCode);
 
@@ -60,7 +59,7 @@ class UserRepository {
     }
   }
 
-  Future<DocumentSnapshot> getAllUser() async {
+  Future<DocumentSnapshot> getUserById() async {
     DocumentSnapshot userSnapshot;
     final userId = (await _firebaseAuth.currentUser()).uid;
     await _usersCollectionReference.where('uid',isEqualTo: userId).getDocuments().then((QuerySnapshot snapshot){

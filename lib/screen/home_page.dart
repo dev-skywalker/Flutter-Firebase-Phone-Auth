@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
@@ -23,9 +24,11 @@ class _HomePageState extends State<HomePage> {
         ),
         body: BlocListener<AuthBloc,AuthState>(listener: (context,state){
           if(state is WarningPermanentUser){
+            print("Permanent");
             return _showDialog();
           }
           if(state is WarningFreeUser){
+            print("free user");
             return _showDialog();
           }
         },
@@ -33,14 +36,14 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(widget.userData.data['fullName']),
-                  Text(widget.userData.data['imei']),
+//                  Text(widget.userData.data['fullName']),
+//                  Text(widget.userData.data['imei']),
                   RaisedButton(
                     child: Text(
                       "Logout",
                       style: TextStyle(color: Colors.white),
                     ),
-                    color: Colors.blue,
+                    color: Colors.deepPurpleAccent,
                     onPressed: () {
                       BlocProvider.of<AuthBloc>(context).add(
                         LoggedOut(),

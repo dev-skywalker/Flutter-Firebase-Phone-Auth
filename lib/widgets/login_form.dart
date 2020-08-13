@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 import 'package:soft_bloc/bloc/auth/auth_bloc.dart';
 import 'package:soft_bloc/bloc/login/login_bloc.dart';
 import 'package:soft_bloc/widgets/edit_text_widgets.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -15,7 +15,6 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
-      //bloc: _loginBloc,
       listener: (context, loginState) {
         if (loginState is ExceptionState || loginState is OtpExceptionState) {
           String message;
@@ -45,7 +44,7 @@ class _LoginFormState extends State<LoginForm> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    color: Colors.yellow,
+                    color: Colors.deepPurpleAccent,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -111,14 +110,18 @@ class Header extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Mobile Number",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(
+                  color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Enter your mobile number to contine",
-                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white,fontSize: 14),
               ),
             )
           ],
@@ -165,7 +168,7 @@ class NumberInput extends StatelessWidget {
                       phoNo: "+95" + _phoneTextController.value.text));
                 }
               },
-              color: Colors.orange,
+              color: Colors.deepPurpleAccent,
               child: Text(
                 "Submit",
                 style: TextStyle(color: Colors.white),
@@ -186,6 +189,13 @@ class NumberInput extends StatelessWidget {
 }
 
 class OtpInput extends StatelessWidget {
+  final FocusNode _pinPutFocusNode = FocusNode();
+  BoxDecoration get _pinPutDecoration {
+    return BoxDecoration(
+      border: Border.all(color: Colors.deepPurpleAccent),
+      borderRadius: BorderRadius.circular(5),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -194,19 +204,42 @@ class OtpInput extends StatelessWidget {
             top: 48, bottom: 16.0, left: 16.0, right: 16.0),
         child: Column(
           children: <Widget>[
-            PinEntryTextField(
-                fields: 6,
+            Padding(
+              padding: const EdgeInsets.only(left: 30,right: 30),
+              child: PinPut(
+                fieldsCount: 6,
                 onSubmit: (String pin) {
                   BlocProvider.of<LoginBloc>(context)
                       .add(VerifyOtpEvent(otp: pin));
-                }),
+                },
+                autofocus: true,
+                focusNode: _pinPutFocusNode,
+                submittedFieldDecoration: _pinPutDecoration.copyWith(
+                  border: Border.all(
+                    color: Colors.deepPurpleAccent,
+                  ),
+                ),
+                selectedFieldDecoration: _pinPutDecoration,
+                followingFieldDecoration: _pinPutDecoration.copyWith(
+                  border: Border.all(
+                    color: Colors.deepPurpleAccent.withOpacity(.5),
+                  ),
+                ),
+              ),
+            ),
+//            PinEntryTextField(
+//                fields: 6,
+//                onSubmit: (String pin) {
+//                  BlocProvider.of<LoginBloc>(context)
+//                      .add(VerifyOtpEvent(otp: pin));
+//                }),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                color: Colors.orange,
+                color: Colors.deepPurpleAccent,
                 child: Text(
                   "Back",
                   style: TextStyle(color: Colors.white),

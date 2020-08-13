@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soft_bloc/services/user_repository.dart';
 
@@ -23,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final bool hasToken = await userRepository.getUser() != null;
 
       if (hasToken) {
-        DocumentSnapshot getUserData = await userRepository.getAllUser();
+        DocumentSnapshot getUserData = await userRepository.getUserById();
         yield Authenticated(getUserData);
       } else {
         yield Unauthenticated();
@@ -45,8 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
   Stream<AuthState> _mapLoggedInToState()async*{
-    DocumentSnapshot getUserData = await userRepository.getAllUser();
-
+    DocumentSnapshot getUserData = await userRepository.getUserById();
     DateTime startTime = DateTime.parse(getUserData.data['startDate']);
     DateTime endTime = DateTime.now();
     int differenceDay = endTime.difference(startTime).inMinutes;
@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapPermanentCheckToState()async*{
     final bool hasToken = await userRepository.getUser() != null;
     if(hasToken){
-      DocumentSnapshot getUserData = await userRepository.getAllUser();
+      DocumentSnapshot getUserData = await userRepository.getUserById();
 
       DateTime startTime = DateTime.parse(getUserData.data['startDate']);
       DateTime endTime = DateTime.now();
