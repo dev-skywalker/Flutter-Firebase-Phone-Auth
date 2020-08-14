@@ -37,8 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     if (event is LoggedOut) {
       yield Loading();
-      yield Unauthenticated();
       userRepository.signOut();
+      yield Unauthenticated();
     }
 
     if(event is CheckPermanentUser){
@@ -47,19 +47,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
   Stream<AuthState> _mapLoggedInToState()async*{
     DocumentSnapshot getUserData = await userRepository.getUserById();
-    DateTime startTime = DateTime.parse(getUserData.data['startDate']);
-    DateTime endTime = DateTime.now();
-    int differenceDay = endTime.difference(startTime).inMinutes;
-
-    if(differenceDay > getUserData.data['limitDate']){
-      if( getUserData.data['limitDate'] == 1){
-        yield WarningFreeUser();
-      }else{
-        yield WarningPermanentUser();
-      }
+//    if(getUserData == null){
+//      yield NotHaveUserData();
+//    }else{
+//      DateTime startTime = DateTime.parse(getUserData.data['startDate']);
+//      DateTime endTime = DateTime.now();
+//      int differenceDay = endTime.difference(startTime).inMinutes;
+//
+//      if(differenceDay > getUserData.data['limitDate']){
+//        if( getUserData.data['limitDate'] == 1){
+//          yield WarningFreeUser();
+//        }else{
+//          yield WarningPermanentUser();
+//        }
+//      }
+      yield Authenticated(getUserData);
     }
-    yield Authenticated(getUserData);
-  }
 
   Stream<AuthState> _mapPermanentCheckToState()async*{
     final bool hasToken = await userRepository.getUser() != null;

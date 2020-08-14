@@ -17,6 +17,8 @@ class Authenticated extends AuthState {
   List<Object> get props => [userData];
 }
 
+class NotHaveUserData extends AuthState{}
+
 class Unauthenticated extends AuthState {}
 
 class Loading extends AuthState {}

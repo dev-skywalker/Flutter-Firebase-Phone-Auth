@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:firebase_auth/firebase_auth.dart";
-import 'package:imei_plugin/imei_plugin.dart';
 
 class UserRepository {
 
@@ -44,13 +43,12 @@ class UserRepository {
     return user;
   }
 
-  Future createUser(String uid,String fullName) async {
-    String imei = await ImeiPlugin.getImei();
+  Future createUser(String fullName) async {
     try {
+      final String userId =  (await _firebaseAuth.currentUser()).uid;
       await _usersCollectionReference.add({
-        "uid": uid,
+        "uid": userId,
         "fullName": fullName,
-        "imei" : imei,
         "startDate" : DateTime.now().toString(),
         "limitDate": 1
       });

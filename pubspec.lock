@@ -177,6 +177,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.0.2"
   http:
     dependency: transitive
     description:
@@ -261,13 +268,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
-  pin_entry_text_field:
-    dependency: "direct main"
-    description:
-      name: pin_entry_text_field
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4"
   pinput:
     dependency: "direct main"
     description:

@@ -39,6 +39,15 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+
+              onPressed: (){
+                Navigator.pushNamed(context, "/intro");
+              },
+              child: Icon(Icons.announcement,color: Colors.white,),
+              backgroundColor: Colors.deepPurpleAccent,
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
             body: Row(
               children: <Widget>[
                 Expanded(
@@ -82,6 +91,7 @@ class _LoginFormState extends State<LoginForm> {
     } else if (state is LoginCompleteState) {
       BlocProvider.of<AuthBloc>(context)
           .add(LoggedIn(token: state.getUser().uid));
+    //  Navigator.pushNamed(context, "/");
     } else {
       return NumberInput();
     }
